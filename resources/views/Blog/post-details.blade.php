@@ -104,30 +104,35 @@
 
                                         @if(Auth::check())
                                         <div class="sidebar-item submit-comment">
-                                            <div class="sidebar-heading">
-                                                <h2>Reply</h2>
-                                            </div>
-                                            <div class="content">
-                                                <form id="comment" action="{{ route('reply') }}" method="POST">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <input name="postId" hidden value="{{ $post->id }}">
-                                                            <input name="commentId" hidden
-                                                                value="{{ $comment->pivot->id }}">
-                                                            <fieldset>
-                                                                <textarea name="comment" rows="6" id="message"
-                                                                    placeholder="Type your comment"
-                                                                    required=""></textarea>
-                                                            </fieldset>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <fieldset>
-                                                                <button type="submit" id="form-submit"
-                                                                    class="main-button">Submit</button>
-                                                            </fieldset>
-                                                        </div>
-                                                </form>
+                                            <div class="row mb-5">
+                                                <div class="col-lg-2"></div>
+                                                <div class="col-lg-8">
+                                                    <div class="sidebar-heading">
+                                                        <h2>Reply</h2>
+                                                    </div>
+                                                    <div class="content">
+                                                        <form id="comment" action="{{ route('reply') }}" method="POST">
+                                                            @csrf
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <input name="postId" hidden value="{{ $post->id }}">
+                                                                    <input name="commentId" hidden
+                                                                        value="{{ $comment->pivot->id }}">
+                                                                    <fieldset>
+                                                                        <textarea name="comment" rows="6" id="message"
+                                                                            placeholder="Type your comment"
+                                                                            required=""></textarea>
+                                                                    </fieldset>
+                                                                </div>
+                                                                <div class="col-lg-12">
+                                                                    <fieldset>
+                                                                        <button type="submit" id="form-submit"
+                                                                            class="main-button">Submit</button>
+                                                                    </fieldset>
+                                                                </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         @endif
