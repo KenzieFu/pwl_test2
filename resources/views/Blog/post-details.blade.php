@@ -87,9 +87,15 @@
                                                 <div class="author-thumb">
                                                     <img src="/storage/{{ $comment->image }}" alt="....">
                                                 </div>
+                                              
                                                 <div class="right-content">
                                                     <h4>{{ $comment->name }}<span>{{ $comment->pivot->created_at
-                                                            }}</span><a href="#"><span class="fa fa-lg fa-trash" style="color: red;"></span></a>
+                                                            }}</span>
+                                                    @if(Auth::check())
+                                                        @if(auth()->user()->id == $comment->id)
+                                                        <a href="/delcom/{{ $comment->pivot->id }}"><span class="fa fa-lg fa-trash" style="color: red;"></span></a>
+                                                    @endif
+                                                @endif
                                                     </h4>
                                                     {{ $comment->pivot->comment }}
                                                 </div>
@@ -133,7 +139,12 @@
                                                 <img src="/storage/{{ $com->user->image }}" alt="">
                                             </div>
                                             <div class="right-content">
-                                                <h4>{{ $com->user->name }}<span>{{ $com->created_at }}</span><a href="#"><span class="fa fa-lg fa-trash" style="color: red;"></span></a></h4>
+                                                <h4>{{ $com->user->name }}<span>{{ $com->created_at }}</span>
+                                                    @if(Auth::check())
+                                                        @if(auth()->user()->id == $com->user->id)
+                                                    <a href="/delcom/{{ $com->id }}"><span class="fa fa-lg fa-trash" style="color: red;"></span></a></h4>
+                                                    @endif
+                                                @endif
                                                 <p>{{ $com->comment }}</p>
                                             </div>
                                         </li>

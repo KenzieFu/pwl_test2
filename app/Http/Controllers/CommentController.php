@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\comment;
 
 class CommentController extends Controller
 {
@@ -25,5 +26,12 @@ class CommentController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function delcom($id)
+    {
+        $comment=comment::findorFail($id);
+        $comment->delete();
+        return redirect()->back();
     }
 }

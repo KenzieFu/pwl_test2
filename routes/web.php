@@ -84,3 +84,7 @@ Route::post('/create',[CreatePostController::class,'createpost'])->name('createp
 Route::post('/send',[CommentController::class,'send'])->name('send');
 Route::post('/reply',[CommentController::class,'reply'])->name('reply');
 
+Route::get('/delcom/{id}',[CommentController::class,'delcom'])->name('delcom');
+
+
+
