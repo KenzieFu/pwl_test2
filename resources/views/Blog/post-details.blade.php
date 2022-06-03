@@ -89,7 +89,7 @@
                                                 </div>
                                               
                                                 <div class="right-content">
-                                                    <h4>{{ $comment->name }}<span>{{ $comment->pivot->created_at
+                                                    <h4><a href="/about/{{ $comment->id }}">{{ $comment->name }}</a><span>{{ $comment->pivot->created_at
                                                             }}</span>
                                                     @if(Auth::check())
                                                         @if(auth()->user()->id == $comment->id)
@@ -144,7 +144,7 @@
                                                 <img src="/storage/{{ $com->user->image }}" alt="">
                                             </div>
                                             <div class="right-content">
-                                                <h4>{{ $com->user->name }}<span>{{ $com->created_at }}</span>
+                                                <h4><a href="/about/{{ $com->user->id }}">{{ $com->user->name }}</a><span>{{ $com->created_at }}</span>
                                                     @if(Auth::check())
                                                         @if(auth()->user()->id == $com->user->id)
                                                     <a href="/delcom/{{ $com->id }}"><span class="fa fa-lg fa-trash" style="color: red;"></span></a></h4>
