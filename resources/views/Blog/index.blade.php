@@ -15,7 +15,7 @@
                         <div class="meta-category">
                            <a href="/searchcate/{{ $banner->category->id }}"> <span>{{ $banner->category->name }}</span></a>
                         </div>
-                        <a href="blog/{{ $banner->id }}">
+                        <a href="/blog/{{ $banner->id }}">
                             <h4>{{ $banner->title }}</h4>
                         </a>
                         <ul class="post-info">

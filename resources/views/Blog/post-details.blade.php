@@ -33,9 +33,9 @@
                                 <div class="down-content">
                                     <a href="/searchcate/{{ $post->category->id }}"><span>{{ $post->category->name
                                             }}</span></a>
-                                    <a href="post-details.html">
+                                    
                                         <h4>{{ $post->title }}</h4>
-                                    </a>
+                                    
                                     <ul class="post-info">
                                         <li><a href="/about/{{ $post->user->id }}">{{ $post->user->name }}</a></li>
                                         <li><a href="#">{{ $post->created_at }}</a></li>
