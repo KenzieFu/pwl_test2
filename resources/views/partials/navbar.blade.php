@@ -4,10 +4,14 @@
             <a class="navbar-brand ml-5" href="/index">
                 <h2>AllT Blog<em>.</em></h2>
             </a>
+            @if(Auth::check())
+                @if(auth()->user()->level == "admin")
             <ul class="navbar-nav ml-3">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin</a>
                 </li></ul>
+                @endif
+            @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
