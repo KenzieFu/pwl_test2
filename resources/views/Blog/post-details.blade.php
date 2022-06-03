@@ -82,14 +82,14 @@
                                     <ul>
                                         @foreach ($post->users as $comment)
                                         @if($comment->pivot->parent == 0)
-                                        <li>
+                                        <li class="mt-5">
                                             <div class="col-lg-12">
                                                 <div class="author-thumb">
                                                     <img src="/storage/{{ $comment->image }}" alt="....">
                                                 </div>
                                                 <div class="right-content">
                                                     <h4>{{ $comment->name }}<span>{{ $comment->pivot->created_at
-                                                            }}</span>
+                                                            }}</span><a href="#"><span class="fa fa-lg fa-trash" style="color: red;"></span></a>
                                                     </h4>
                                                     {{ $comment->pivot->comment }}
                                                 </div>
@@ -97,29 +97,32 @@
                                         </li>
 
                                         @if(Auth::check())
-                                        <div class="sidebar-heading">
-                                            <h2>Reply</h2>
-                                        </div>
-                                        <div class="content">
-                                            <form id="comment" action="{{ route('reply') }}" method="POST">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <input name="postId" hidden value="{{ $post->id }}">
-                                                        <input name="commentId" hidden
-                                                            value="{{ $comment->pivot->id }}">
-                                                        <fieldset>
-                                                            <textarea name="comment" rows="6" id="message"
-                                                                placeholder="Type your comment" required=""></textarea>
-                                                        </fieldset>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <fieldset>
-                                                            <button type="submit" id="form-submit"
-                                                                class="main-button">Submit</button>
-                                                        </fieldset>
-                                                    </div>
-                                            </form>
+                                        <div class="sidebar-item submit-comment">
+                                            <div class="sidebar-heading">
+                                                <h2>Reply</h2>
+                                            </div>
+                                            <div class="content">
+                                                <form id="comment" action="{{ route('reply') }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <input name="postId" hidden value="{{ $post->id }}">
+                                                            <input name="commentId" hidden
+                                                                value="{{ $comment->pivot->id }}">
+                                                            <fieldset>
+                                                                <textarea name="comment" rows="6" id="message"
+                                                                    placeholder="Type your comment"
+                                                                    required=""></textarea>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <fieldset>
+                                                                <button type="submit" id="form-submit"
+                                                                    class="main-button">Submit</button>
+                                                            </fieldset>
+                                                        </div>
+                                                </form>
+                                            </div>
                                         </div>
                                         @endif
 
@@ -130,7 +133,7 @@
                                                 <img src="/storage/{{ $com->user->image }}" alt="">
                                             </div>
                                             <div class="right-content">
-                                                <h4>{{ $com->user->name }}<span>{{ $com->created_at }}</span></h4>
+                                                <h4>{{ $com->user->name }}<span>{{ $com->created_at }}</span><a href="#"><span class="fa fa-lg fa-trash" style="color: red;"></span></a></h4>
                                                 <p>{{ $com->comment }}</p>
                                             </div>
                                         </li>
