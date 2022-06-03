@@ -31,7 +31,8 @@
                                     <img src="images/blog-post-02.jpg" alt="">
                                 </div>
                                 <div class="down-content">
-                                    <a href="/searchcate/{{ $post->category->id }}"><span>{{ $post->category->name }}</span></a>
+                                    <a href="/searchcate/{{ $post->category->id }}"><span>{{ $post->category->name
+                                            }}</span></a>
                                     <a href="post-details.html">
                                         <h4>{{ $post->title }}</h4>
                                     </a>
@@ -40,12 +41,11 @@
                                         <li><a href="#">{{ $post->created_at }}</a></li>
                                         {{-- <li><a href="#">10 Comments</a></li> --}}
                                     </ul>
+                                    {!! $post->content !!}
                                 </div>
-                                {!! $post->content !!}
                             </div>
                         </div>
 
-                        
                         @if(Auth::check())
                         <div class="col-lg-12">
                             <div class="sidebar-item submit-comment">
@@ -71,65 +71,60 @@
                                             </div>
                                         </div>
                                     </form>
-                                    @endif
                                 </div>
                             </div>
                         </div>
-
+                        @endif
 
                         <div class="col-lg-12">
                             <div class="sidebar-item comments">
-                                
                                 <div class="content mb-5">
                                     <ul>
                                         @foreach ($post->users as $comment)
-                                            @if($comment->pivot->parent == 0)
-                                                <li>
-                                                    <div class="author-thumb">
-                                                        <img src="/storage/{{ $comment->image }}" alt="....">
-                                                    </div>
-                                                    <div class="right-content">
-                                                        <h4>{{ $comment->name }}<span>{{ $comment->pivot->created_at }}</span></h4>
-                                                        {{ $comment->pivot->comment }}
-                                                    </div>
-                                                </li>
-
-                                                @if(Auth::check())
-                                                <div class="sidebar-heading">
-                                                    <h2>Reply</h2>
+                                        @if($comment->pivot->parent == 0)
+                                        <li>
+                                            <div class="col-lg-12">
+                                                <div class="author-thumb">
+                                                    <img src="/storage/{{ $comment->image }}" alt="....">
                                                 </div>
-                                                <div class="content">
-                                                    <form id="comment" action="{{ route('reply') }}" method="POST">
-                                                        @csrf
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <input name="postId" hidden value="{{ $post->id }}">
-                                                            <input name="commentId" hidden value="{{ $comment->pivot->id }}">
-                                                            <fieldset>
-                                                                <textarea name="comment" rows="6" id="message"
+                                                <div class="right-content">
+                                                    <h4>{{ $comment->name }}<span>{{ $comment->pivot->created_at
+                                                            }}</span>
+                                                    </h4>
+                                                    {{ $comment->pivot->comment }}
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        @if(Auth::check())
+                                        <div class="sidebar-heading">
+                                            <h2>Reply</h2>
+                                        </div>
+                                        <div class="content">
+                                            <form id="comment" action="{{ route('reply') }}" method="POST">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <input name="postId" hidden value="{{ $post->id }}">
+                                                        <input name="commentId" hidden
+                                                            value="{{ $comment->pivot->id }}">
+                                                        <fieldset>
+                                                            <textarea name="comment" rows="6" id="message"
                                                                 placeholder="Type your comment" required=""></textarea>
-                                                            </fieldset>
-                                                        </div>
+                                                        </fieldset>
+                                                    </div>
                                                     <div class="col-lg-12">
                                                         <fieldset>
                                                             <button type="submit" id="form-submit"
                                                                 class="main-button">Submit</button>
                                                         </fieldset>
                                                     </div>
-                                                </form>
-                                                </div>
-                                                @endif
-                                      
+                                            </form>
+                                        </div>
+                                        @endif
 
-
-
-
-
-
-
-                                        
                                         @foreach($comments as $com)
-                                            @if($comment->pivot->id == $com->parent )
+                                        @if($comment->pivot->id == $com->parent )
                                         <li class="replied">
                                             <div class="author-thumb">
                                                 <img src="/storage/{{ $com->user->image }}" alt="">
@@ -139,16 +134,14 @@
                                                 <p>{{ $com->comment }}</p>
                                             </div>
                                         </li>
-                                            @endif
+                                        @endif
                                         @endforeach
-                                            @endif
-                                    @endforeach
-                                       
+                                        @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -158,15 +151,13 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Let's make your version post</h5>
                         <p class="card-text">Interested in making a post that helps a lot of people?</p>
-                        <a href="{{ route('createpost') }}" class="btn btn-warning btn-block mt-2" role="button" style="background-color: #f48840; color: white;">Create A
-                        Post</a>
+                        <a href="{{ route('createpost') }}" class="btn btn-warning btn-block mt-2" role="button"
+                            style="background-color: #f48840; color: white;">Create A
+                            Post</a>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </section>
 @endsection
